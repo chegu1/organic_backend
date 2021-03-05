@@ -88,16 +88,15 @@ exports.userById = asynHandler(async (req, res, next, id) => {
 exports.requireSignin = expressJwt({
     secret: process.env.JWT_SECRET,
     userProperty: 'auth',
-    algorithms: ['RS256']
+    algorithms: ['sha1', 'RS256', 'HS256']
 });
 
 /**Verifying whether the user is authenticated or not */
 exports.isAuth = (req, res, next) => {
     let user = req.profile && req.auth && req.profile._id == req.auth._id;
     if (!user) {
-        return res.status(403).json({
-            error: 'Access denied'
-        });
+        return errorResponse(RESPONSE_MESSAGES.USER_INACTIVE,
+            STATUS_CODES.UNAUTHORISED)
     }
     next();
 };
