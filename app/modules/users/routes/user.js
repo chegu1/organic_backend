@@ -1,4 +1,4 @@
-const { signup, signin } = require('../controllers/user')
+const { signup, signin, userById } = require('../controllers/user')
 
 module.exports = function (app) {
     app.route('/api/auth/signup')
@@ -9,4 +9,6 @@ module.exports = function (app) {
         .post(
             signin
         );
+    app.param('userId', userById)
+
 };
