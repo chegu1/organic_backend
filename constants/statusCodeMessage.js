@@ -2,10 +2,13 @@ exports.RESPONSE_MESSAGES = {
     SERVER_ERROR: 'Something went wrong ..!',
     INVALID_API_KEY: 'Invalid api key ..!',
     INVALID_REQUEST: 'Invalid request ..!',
-    NO_MATCH: 'No match found ..!',
+    NO_MATCH: 'Email and password dont match',
+    NOT_FOUND: 'User not found',
     DEFAULT_SUCCESS_MESSAGE: 'Action successful',
     USER_EXISTING: 'This email is already registered with us try to login',
-    USER_REGISTER_SUCCESS: 'User successfully registered with us'
+    USER_REGISTER_SUCCESS: 'User successfully registered with us',
+    USER_LOGIN_SUCCESS: 'User verified and able to login',
+    USER_INACTIVE: 'User dont have permissions to login'
 }
 
 exports.STATUS_CODES = {

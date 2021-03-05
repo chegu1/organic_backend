@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Schema;
 const crypto = require('crypto');
 
 const userSchema = mongoose.Schema({
@@ -26,8 +27,8 @@ const userSchema = mongoose.Schema({
         default: 'active'
     },
     createdBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: ObjectId,
+        ref: "User"
     }
 
 }, { timestamps: true })
