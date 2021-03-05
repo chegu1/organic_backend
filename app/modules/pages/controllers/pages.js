@@ -8,7 +8,9 @@ const {
 exports.createPage = asyncHandler(async (req, res) => {
 
     const { title, content, keywords } = req.body;
+    /**User id-->Created by user */
     let createdBy = req.params.userId;
+    /**Created page */
     const createPageData = await new Pages(
         {
             title,
@@ -16,7 +18,7 @@ exports.createPage = asyncHandler(async (req, res) => {
             keywords,
             createdBy
         })
-
+    /**Saved into the database */
     const savePageIntoDb = await createPageData.save();
 
     return successResponse(RESPONSE_MESSAGES.PAGE_CREATED_SUCCESS,
@@ -25,7 +27,9 @@ exports.createPage = asyncHandler(async (req, res) => {
 
 /**list of all pages */
 exports.listOfAllPages = asyncHandler(async (req, res) => {
+    /**List of all pages */
     let pagesList = await Pages.find();
+    /**If Pages not found */
     if (!pagesList) {
         return errorResponse(RESPONSE_MESSAGES.NOT_FOUND,
             STATUS_CODES.NOT_FOUND)
@@ -36,6 +40,7 @@ exports.listOfAllPages = asyncHandler(async (req, res) => {
 
 /**Get single page based upon id || middleware for Update,Delete*/
 exports.pageById = asyncHandler(async (req, res, next, id) => {
+    /**Single page */
     let pagesList = await Pages.findById(id);
     if (!pagesList) {
         return errorResponse(RESPONSE_MESSAGES.NOT_FOUND,
@@ -53,8 +58,9 @@ exports.singlePage = (req, res) => {
 
 /**Update Page by id */
 exports.updatePage = asyncHandler(async (req, res) => {
+    /**Original values */
     let { title, content, keywords } = req.pagesList;
-
+    /**FInd particular page to update with new values */
     let singlePage = await Pages.findOne({ _id: req.pagesList._id });
     if (req.body.title) {
         title = req.body.title
@@ -65,7 +71,7 @@ exports.updatePage = asyncHandler(async (req, res) => {
     if (req.body.keywords) {
         keywords = req.body.keywords
     }
-
+    /**Saving values into the database */
     let updateIntoDb = await singlePage.save()
 
     return successResponse(RESPONSE_MESSAGES.DEFAULT_SUCCESS_MESSAGE,
@@ -75,6 +81,7 @@ exports.updatePage = asyncHandler(async (req, res) => {
 
 /**Deleting a page */
 exports.deletePage = asyncHandler(async (req, res) => {
+    /**Delete single page */
     let removePage = await Pages.deleteOne({ _id: req.pagesList._id });
     if (!removePage)
         return errorResponse(RESPONSE_MESSAGES.NOT_FOUND,
