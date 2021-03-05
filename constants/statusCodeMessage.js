@@ -8,7 +8,8 @@ exports.RESPONSE_MESSAGES = {
     USER_EXISTING: 'This email is already registered with us try to login',
     USER_REGISTER_SUCCESS: 'User successfully registered with us',
     USER_LOGIN_SUCCESS: 'User verified and able to login',
-    USER_INACTIVE: 'User dont have permissions to login'
+    USER_INACTIVE: 'User dont have permissions to login',
+    PAGE_CREATED_SUCCESS: 'New Page is created successfully'
 }
 
 exports.STATUS_CODES = {

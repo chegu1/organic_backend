@@ -20,8 +20,7 @@ const pageSchema = mongoose.Schema(
         },
         createdBy: {
             type: ObjectId,
-            ref: "User",
-            required: true
+            ref: "User"
         }
     }, { timestamps: true })
 
